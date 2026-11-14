@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Face Masker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Face Masker</h1>
+    <button id="openBtn" class="primary">Choose photo…</button>
+    <input id="fileInput" type="file" accept="image/*" hidden>
+    <span id="status" class="status">Choose a local photo to begin.</span>
+    <button id="saveBtn" class="primary" disabled>Save masked photo</button>
+  </header>
+
+  <main>
+    <section id="images" class="images" hidden>
+      <figure>
+        <figcaption>Original <span id="origName" class="muted"></span></figcaption>
+        <div class="stage" id="stageOriginal"><canvas id="origCanvas"></canvas><div class="boxes"></div></div>
+      </figure>
+      <figure>
+        <figcaption>Masked <span id="maskedName" class="muted"></span></figcaption>
+        <div class="stage" id="stageMasked"><canvas id="maskCanvas"></canvas><div class="boxes"></div></div>
+      </figure>
+    </section>
+
+    <aside id="panel" class="panel" hidden>
+      <h2>Faces <span id="count" class="muted"></span></h2>
+      <div class="bulk">
+        <button data-bulk="all">All</button>
+        <button data-bulk="none">None</button>
+        <button data-bulk="kid">Kids</button>
+        <button data-bulk="adult">Adults</button>
+      </div>
+      <ul id="faceList"></ul>
+      <h3>Mask style</h3>
+      <label>Type
+        <select id="maskType">
+          <option value="motion">Motion blur</option>
+          <option value="pixelate">Pixelate</option>
+          <option value="blur">Blur</option>
+          <option value="smiley">Smiley face</option>
+          <option value="solid">Solid black</option>
+        </select>
+      </label>
+      <label>Shape
+        <select id="maskShape">
+          <option value="ellipse">Ellipse</option>
+          <option value="rect">Rectangle</option>
+        </select>
+      </label>
+      <label>Strength
+        <input id="strength" type="range" min="1" max="10" value="6">
+      </label>
+      <label>Opacity
+        <input id="opacity" type="range" min="30" max="100" value="85">
+      </label>
+    </aside>
+
+    <p id="empty" class="empty">No photo loaded.</p>
+  </main>
+
+  <script src="/lib/face-api.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
